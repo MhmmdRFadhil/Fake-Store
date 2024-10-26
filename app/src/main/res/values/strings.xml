@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">FakeStore</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="min_char">Minimal %1$d karakter</string>
+    <string name="field_is_empty">Field tidak boleh kosong</string>
+    <string name="required_field">Mohon semua data dimasukan dengan benar</string>
+    <string name="login_success_message">Login Success</string>
+    <string name="greeting">Hello, %s</string>
+    <string name="default_greeting">Hello!</string>
+    <string name="greeting_message">What do you want to buy?</string>
 </resources>
