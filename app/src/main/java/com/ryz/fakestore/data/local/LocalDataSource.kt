@@ -19,6 +19,10 @@ class LocalDataSource(private val dataStore: DataStore<Preferences>) {
         preferences[USERNAME_KEY]
     }
 
+    val userId: Flow<Int?> = dataStore.data.map { preferences ->
+        preferences[USER_ID_KEY]
+    }
+
     suspend fun saveTokenAuth(token: String) {
         dataStore.edit { preferences ->
             preferences[TOKEN_KEY] = token
@@ -31,10 +35,10 @@ class LocalDataSource(private val dataStore: DataStore<Preferences>) {
         }
     }
 
-    suspend fun getAuthToken(): String? {
-        return dataStore.data.map { preferences ->
-            preferences[TOKEN_KEY]
-        }.firstOrNull()
+    suspend fun saveUserId(userId: Int) {
+        dataStore.edit { preferences ->
+            preferences[USER_ID_KEY] = userId
+        }
     }
 
     companion object {

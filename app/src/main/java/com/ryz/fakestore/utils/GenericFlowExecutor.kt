@@ -1,5 +1,6 @@
 package com.ryz.fakestore.utils
 
+import android.util.Log
 import com.ryz.fakestore.data.remote.Resource
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.FlowCollector
@@ -21,8 +22,10 @@ inline fun <Res, Return> executeFlow(
        } else {
            val errorBody = response.errorBody()?.charStream()?.readText()
            emit(Resource.Error(errorBody.orEmpty()))
+           Log.d("executeFlow", "Error: ${errorBody.orEmpty()}")
        }
     }.catch { ex ->
         emit(Resource.Loading(false))
         emit(Resource.Error(ex.message.orEmpty()))
+        Log.d("executeFlow", "Error: ${ex.message.orEmpty()}")
     }.flowOn(Dispatchers.IO)

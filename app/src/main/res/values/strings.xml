@@ -7,7 +7,17 @@
     <string name="field_is_empty">Field tidak boleh kosong</string>
     <string name="required_field">Mohon semua data dimasukan dengan benar</string>
     <string name="login_success_message">Login Success</string>
-    <string name="greeting">Hello, %s</string>
+    <string name="greeting">Hello %s,</string>
     <string name="default_greeting">Hello!</string>
     <string name="greeting_message">What do you want to buy?</string>
+    <string name="choose_category_label">Choose Category</string>
+    <string name="rating_dummy">4.8</string>
+    <string name="count_rating">(%s Reviews)</string>
+    <string name="format_price">$%s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="description_label">Description</string>
+    <string name="details">Details</string>
+    <string name="check_out">Check Out</string>
+    <string name="price">Price</string>
 </resources>

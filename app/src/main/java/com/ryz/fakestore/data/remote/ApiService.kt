@@ -3,6 +3,7 @@ package com.ryz.fakestore.data.remote
 import com.ryz.fakestore.data.model.request.LoginRequest
 import com.ryz.fakestore.data.model.response.LoginResponse
 import com.ryz.fakestore.data.model.response.ProductResponse
+import com.ryz.fakestore.data.model.response.UserResponse
 import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -19,19 +20,29 @@ interface ApiService {
     @GET("/products/categories")
     suspend fun getAllCategory(): Response<List<String>>
 
-    @GET("/products/category/jewelery")
-    suspend fun getProductByCategory(): Response<ProductResponse>
+    @GET("/products/category/{category}")
+    suspend fun getProductByCategory(
+        @Path("category") category: String
+    ): Response<List<ProductResponse>>
 
     @GET("/products")
-    suspend fun getProduct(): Response<ProductResponse>
+    suspend fun getProduct(): Response<List<ProductResponse>>
 
     @GET("/products")
     suspend fun getSortProduct(
         @Query("sort") sort: String
-    ): Response<ProductResponse>
+    ): Response<List<ProductResponse>>
 
     @GET("/products/{product_id}")
     suspend fun getDetailProduct(
         @Path("product_id") productId: Int
     ): Response<ProductResponse>
+
+    @GET("/users")
+    suspend fun getUser(): Response<UserResponse>
+
+    @GET("users/{user_id}")
+    suspend fun getUserById(
+        @Path("user_id") userId: Int
+    ): Response<UserResponse>
 }
