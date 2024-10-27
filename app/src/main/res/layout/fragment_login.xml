@@ -7,27 +7,40 @@
     tools:context=".ui.auth.LoginFragment">
 
     <ImageView
-        android:id="@+id/iv_main_bg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:adjustViewBounds="true"
-        android:src="@drawable/bg_shopping"
+        android:id="@+id/iv_shop"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="@dimen/large_margin"
+        android:src="@drawable/ic_shop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/tv_login_label"
+        android:id="@+id/tv_greeting"
         style="@style/CustomFontTextViewSemiBold"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/small_margin"
-        android:layout_marginTop="@dimen/small_margin"
-        android:text="Login"
-        android:textSize="@dimen/text_heading_3"
+        android:text="Hello Again 👋🏻"
+        android:textSize="@dimen/text_heading_4"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_main_bg" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.3" />
+
+    <TextView
+        android:id="@+id/tv_greeting_message"
+        style="@style/CustomFontTextViewMedium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/extra_small_margin"
+        android:text="Welcome back, you've been missed!"
+        android:textColor="@color/md_theme_secondary"
+        android:textSize="@dimen/text_regular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_greeting" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/til_username"
@@ -35,11 +48,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/regular_margin"
-        android:layout_marginTop="@dimen/regular_margin"
+        android:layout_marginTop="@dimen/xlarge_margin"
         app:hintEnabled="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_login_label">
+        app:layout_constraintTop_toBottomOf="@+id/tv_greeting_message">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/edt_username"
@@ -78,7 +91,8 @@
         style="@style/CustomFontTextViewMedium"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/regular_margin"
+        android:layout_marginHorizontal="@dimen/regular_margin"
+        android:layout_marginTop="@dimen/xlarge_margin"
         android:background="@drawable/bg_round_5_primary"
         android:elevation="4dp"
         android:foreground="?selectableItemBackground"
@@ -86,6 +100,8 @@
         android:paddingVertical="@dimen/medium_margin"
         android:text="@string/login"
         android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/til_password" />
 
     <ProgressBar
