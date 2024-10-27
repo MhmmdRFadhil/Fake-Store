@@ -8,7 +8,7 @@
         android:id="@+id/loginFragment"
         android:name="com.ryz.fakestore.ui.auth.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
@@ -17,18 +17,26 @@
         android:id="@+id/homeFragment"
         android:name="com.ryz.fakestore.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_homeDetailFragment"
             app:destination="@id/homeDetailFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bottomSheetProfileFragment"
+            app:destination="@id/bottomSheetProfileFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeDetailFragment"
         android:name="com.ryz.fakestore.ui.home.detail.HomeDetailFragment"
         android:label="fragment_home_detail"
-        tools:layout="@layout/fragment_home_detail" >
+        tools:layout="@layout/fragment_home_detail">
         <argument
             android:name="id"
             app:argType="integer" />
     </fragment>
+    <dialog
+        android:id="@+id/bottomSheetProfileFragment"
+        android:name="com.ryz.fakestore.ui.home.profile.BottomSheetProfileFragment"
+        android:label="BottomSheetProfileFragment"
+        tools:layout="@layout/fragment_bottom_sheet_profile" />
 </navigation>

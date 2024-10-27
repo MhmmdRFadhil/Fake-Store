@@ -18,7 +18,9 @@ import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
+
     private val viewModel by viewModels<HomeViewModel>()
+
     private lateinit var categoryAdapter: CategoryAdapter
     private lateinit var productAdapter: ProductAdapter
     private var currentCategory: String? = null
@@ -45,6 +47,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 viewModel.getProduct()
             }
             swipeLayout.isRefreshing = false
+        }
+
+        ivProfile.setOnClickListener {
+            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBottomSheetProfileFragment())
         }
     }
 
@@ -81,6 +87,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
         }
     }
+
 
     private fun initAdapter() {
         with(binding.rvCategory) {

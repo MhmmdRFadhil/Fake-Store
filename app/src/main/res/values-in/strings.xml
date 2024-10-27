@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FakeStore</string>
+    <string name="username">Nama pengguna</string>
+    <string name="password">Kata sandi</string>
+    <string name="login">Login</string>
+    <string name="min_char">Minimal %1$d karakter</string>
+    <string name="field_is_empty">Field tidak boleh kosong</string>
+    <string name="required_field">Mohon semua data dimasukan dengan benar</string>
+    <string name="login_success_message">Login Sukses</string>
+    <string name="greeting">Hello %s,</string>
+    <string name="default_greeting">Hello!</string>
+    <string name="greeting_message">Apa yang ingin Anda beli?</string>
+    <string name="choose_category_label">Pilih Kategori</string>
+    <string name="rating_dummy">4.8</string>
+    <string name="count_rating">(%s Ulasan)</string>
+    <string name="format_price">$%s</string>
+    <string name="description_label">Deskripsi</string>
+    <string name="details">Rincian</string>
+    <string name="check_out">Check Out</string>
+    <string name="price">Harga</string>
+    <string name="firstname">Nama depan</string>
+    <string name="lastname">Nama belakang</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="street">Jalan</string>
+    <string name="city">Kota</string>
+    <string name="number">Nomer</string>
+    <string name="zip_code">Kode pos</string>
+</resources>

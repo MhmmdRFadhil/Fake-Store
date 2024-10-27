@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ryz.fakestore.data.model.request.LoginRequest
 import com.ryz.fakestore.data.model.response.LoginResponse
+import com.ryz.fakestore.data.model.response.UserResponse
 import com.ryz.fakestore.data.repository.AuthRepository
 import com.ryz.fakestore.utils.GenericUiState
 import com.ryz.fakestore.utils.updateFromResource
@@ -19,9 +20,18 @@ class LoginViewModel @Inject constructor(private val repository: AuthRepository)
         MutableStateFlow<GenericUiState<LoginResponse>>(GenericUiState.Loading(false))
     val loginState = _loginState.asStateFlow()
 
+    private val _userData = MutableStateFlow<GenericUiState<UserResponse>>(GenericUiState.Loading(false))
+    val userData = _userData.asStateFlow()
+
     fun login(request: LoginRequest) = viewModelScope.launch {
         repository.login(request).collect { resource ->
             _loginState.updateFromResource(resource)
+        }
+    }
+
+    fun getUserById(userId: Int) = viewModelScope.launch {
+        repository.getUserById(userId).collect { resource ->
+            _userData.updateFromResource(resource)
         }
     }
 }

@@ -3,9 +3,9 @@
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="login">Login</string>
-    <string name="min_char">Minimal %1$d karakter</string>
-    <string name="field_is_empty">Field tidak boleh kosong</string>
-    <string name="required_field">Mohon semua data dimasukan dengan benar</string>
+    <string name="min_char">Minimum %1$d characters</string>
+    <string name="field_is_empty">The field should not be empty</string>
+    <string name="required_field">Please enter all data correctly</string>
     <string name="login_success_message">Login Success</string>
     <string name="greeting">Hello %s,</string>
     <string name="default_greeting">Hello!</string>
@@ -20,4 +20,12 @@
     <string name="details">Details</string>
     <string name="check_out">Check Out</string>
     <string name="price">Price</string>
+    <string name="firstname">Firstname</string>
+    <string name="lastname">Lastname</string>
+    <string name="email">Email</string>
+    <string name="phone">Phone</string>
+    <string name="street">Street</string>
+    <string name="city">City</string>
+    <string name="number">Number</string>
+    <string name="zip_code">Zip Code</string>
 </resources>
