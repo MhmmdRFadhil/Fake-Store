@@ -3,11 +3,9 @@ package com.ryz.fakestore.utils
 import android.app.Activity
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.RoundedCorner
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController

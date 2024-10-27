@@ -8,6 +8,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface AuthRepository {
     suspend fun login(request: LoginRequest): Flow<Resource<LoginResponse>>
-    suspend fun getUser(): Flow<Resource<UserResponse>>
+    suspend fun getUser(): Flow<Resource<List<UserResponse>>>
     suspend fun getUserById(userId: Int): Flow<Resource<UserResponse>>
 }

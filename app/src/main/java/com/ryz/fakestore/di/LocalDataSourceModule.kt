@@ -1,23 +1,30 @@
 package com.ryz.fakestore.di
 
+import android.app.Application
 import android.content.Context
-import androidx.datastore.preferences.preferencesDataStore
+import android.content.SharedPreferences
 import com.ryz.fakestore.data.local.LocalDataSource
+import com.ryz.fakestore.data.local.LocalDataSourceImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
 object LocalDataSourceModule {
-
-    private val Context.dataStore by preferencesDataStore("app_preferences")
+    @Provides
+    @Singleton
+    fun provideSharedPreferences(
+        app: Application
+    ): SharedPreferences {
+        return app.getSharedPreferences("shared_pref", Context.MODE_PRIVATE)
+    }
 
     @Provides
     @Singleton
-    fun provideDataStoreManager(@ApplicationContext context: Context): LocalDataSource =
-        LocalDataSource(context.dataStore)
+    fun providePreferences(sharedPreferences: SharedPreferences): LocalDataSource {
+        return LocalDataSourceImpl(sharedPreferences)
+    }
 }

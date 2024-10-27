@@ -71,6 +71,7 @@ class LoginFragment : BaseFragment<FragmentLoginBinding>(FragmentLoginBinding::i
                 fragment = this@LoginFragment,
                 progressBar = binding.progressBar,
                 onSuccess = {
+                    viewModel.getUser()
                     showMessage(getString(R.string.login_success_message))
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
                 })

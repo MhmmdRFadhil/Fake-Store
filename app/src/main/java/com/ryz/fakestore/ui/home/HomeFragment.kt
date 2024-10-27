@@ -1,7 +1,6 @@
 package com.ryz.fakestore.ui.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -36,9 +35,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     }
 
     private fun initUI() {
+        val username = localDataSource.getUsername()?.let { username ->
+            getString(R.string.greeting, username)
+        } ?: run {
+            getString(R.string.default_greeting)
+        }
+        binding.tvUsername.text = username
+
         viewModel.getAllCategory()
         viewModel.getProduct()
-        Log.d(TAG, "CurrentCategory: $currentCategory")
     }
 
     private fun initListener() = with(binding) {
@@ -52,24 +57,16 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
 
         ivProfile.setOnClickListener {
-            findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToBottomSheetProfileFragment())
+            findNavController().navigate(
+                HomeFragmentDirections.actionHomeFragmentToBottomSheetProfileFragment(
+                    localDataSource.getUserId()
+                )
+            )
         }
     }
 
     private fun initCollector() = viewLifecycleOwner.lifecycleScope.launch {
         viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            launch {
-                viewModel.username.collect { data ->
-                    val username = data?.let { username ->
-                        getString(R.string.greeting, username)
-                    } ?: run {
-                        getString(R.string.default_greeting)
-                    }
-
-                    binding.tvUsername.text = username
-                }
-            }
-
             launch {
                 viewModel.category.collectUiState(
                     fragment = this@HomeFragment,
@@ -90,11 +87,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         }
     }
 
-
     private fun initAdapter() {
         with(binding.rvCategory) {
             categoryAdapter = CategoryAdapter { category ->
-                Log.d(TAG, "CurrentCategory: $currentCategory, Category: $category")
                 if (currentCategory == category) {
                     viewModel.getProduct()
                     currentCategory = null

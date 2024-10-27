@@ -1,21 +1,19 @@
 package com.ryz.fakestore
 
-import android.content.ContentValues.TAG
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
+import com.ryz.fakestore.data.local.LocalDataSource
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    private val viewModel by viewModels<MainViewModel>()
+    @Inject
+    lateinit var localDataSource: LocalDataSource
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -37,15 +35,11 @@ class MainActivity : AppCompatActivity() {
         val navInflater = navController.navInflater
         val navGraph = navInflater.inflate(R.navigation.main_nav_graph)
 
-        lifecycleScope.launch {
-            viewModel.token.collect { token ->
-                val startDestination = when {
-                    token.isNullOrEmpty() -> R.id.loginFragment
-                    else -> R.id.homeFragment
-                }
-                navGraph.setStartDestination(startDestination)
-                navController.graph = navGraph
-            }
+        val startDestination = when {
+            localDataSource.getToken().isNullOrEmpty() -> R.id.loginFragment
+            else -> R.id.homeFragment
         }
+        navGraph.setStartDestination(startDestination)
+        navController.graph = navGraph
     }
 }

@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.navArgs
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -25,6 +26,7 @@ class BottomSheetProfileFragment : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<LoginViewModel>()
+    private val args by navArgs<BottomSheetProfileFragmentArgs>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -61,7 +63,7 @@ class BottomSheetProfileFragment : BottomSheetDialogFragment() {
     }
 
     private fun initUI() {
-        viewModel.getUserById(1)
+        viewModel.getUserById(args.userId)
     }
 
     private fun initCollector() = viewLifecycleOwner.lifecycleScope.launch {

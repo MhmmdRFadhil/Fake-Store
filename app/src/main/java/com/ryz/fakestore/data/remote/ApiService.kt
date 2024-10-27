@@ -39,7 +39,7 @@ interface ApiService {
     ): Response<ProductResponse>
 
     @GET("/users")
-    suspend fun getUser(): Response<UserResponse>
+    suspend fun getUser(): Response<List<UserResponse>>
 
     @GET("users/{user_id}")
     suspend fun getUserById(

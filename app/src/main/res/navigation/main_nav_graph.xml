@@ -38,5 +38,9 @@
         android:id="@+id/bottomSheetProfileFragment"
         android:name="com.ryz.fakestore.ui.home.profile.BottomSheetProfileFragment"
         android:label="BottomSheetProfileFragment"
-        tools:layout="@layout/fragment_bottom_sheet_profile" />
+        tools:layout="@layout/fragment_bottom_sheet_profile" >
+        <argument
+            android:name="userId"
+            app:argType="integer" />
+    </dialog>
 </navigation>
