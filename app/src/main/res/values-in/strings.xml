@@ -8,7 +8,7 @@
     <string name="field_is_empty">Field tidak boleh kosong</string>
     <string name="required_field">Mohon semua data dimasukan dengan benar</string>
     <string name="login_success_message">Login Sukses</string>
-    <string name="greeting">Hello %s,</string>
+    <string name="greeting">Hello, %s 👋🏻</string>
     <string name="default_greeting">Hello!</string>
     <string name="greeting_message">Apa yang ingin Anda beli?</string>
     <string name="choose_category_label">Pilih Kategori</string>

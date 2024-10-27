@@ -7,7 +7,7 @@
     <string name="field_is_empty">The field should not be empty</string>
     <string name="required_field">Please enter all data correctly</string>
     <string name="login_success_message">Login Success</string>
-    <string name="greeting">Hello %s,</string>
+    <string name="greeting">Hello, %s 👋🏻</string>
     <string name="default_greeting">Hello!</string>
     <string name="greeting_message">What do you want to buy?</string>
     <string name="choose_category_label">Choose Category</string>
