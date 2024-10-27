@@ -26,4 +26,6 @@
     <string name="city">City</string>
     <string name="number">Number</string>
     <string name="zip_code">Zip Code</string>
+    <string name="greeting_login">Hello Again 👋🏻</string>
+    <string name="greeting_message_login">Welcome back, you\'ve been missed!</string>
 </resources>

@@ -27,4 +27,6 @@
     <string name="city">Kota</string>
     <string name="number">Nomer</string>
     <string name="zip_code">Kode pos</string>
+    <string name="greeting_login">Halo lagi 👋🏻</string>
+    <string name="greeting_message_login">Selamat datang kembali, Anda telah dirindukan!</string>
 </resources>
