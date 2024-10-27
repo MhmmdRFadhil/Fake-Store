@@ -1,6 +1,7 @@
 package com.ryz.fakestore.ui.home
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -37,6 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun initUI() {
         viewModel.getAllCategory()
         viewModel.getProduct()
+        Log.d(TAG, "CurrentCategory: $currentCategory")
     }
 
     private fun initListener() = with(binding) {
@@ -92,12 +94,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private fun initAdapter() {
         with(binding.rvCategory) {
             categoryAdapter = CategoryAdapter { category ->
+                Log.d(TAG, "CurrentCategory: $currentCategory, Category: $category")
                 if (currentCategory == category) {
-                    currentCategory = null
                     viewModel.getProduct()
+                    currentCategory = null
                 } else {
-                    currentCategory = category
                     viewModel.getProductByCategory(category)
+                    currentCategory = category
                 }
             }
             adapter = categoryAdapter
@@ -113,6 +116,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                             productId
                         )
                     )
+                    currentCategory = null
                 }
             }
 
