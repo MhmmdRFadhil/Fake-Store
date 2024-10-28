@@ -14,10 +14,18 @@
         alt="Cart"    
         style="margin-right: 50px;"    
         width="250" />
+  <img src="/screenshot/Empty Cart.png"
+        alt="Home"    
+        style="margin-right: 50px;"    
+        width="250" />
   <img src="/screenshot/Checkout.png"
         alt="Checkout"    
         style="margin-right: 50px;"    
         width="250" />    
+  <img src="/screenshot/Success Order.png"
+        alt="Cart"    
+        style="margin-right: 50px;"    
+        width="250" />
 </p>
 
 ## Account for Login
