@@ -11,11 +11,11 @@
         style="margin-right: 50px;"    
         width="250" />
   <img src="/screenshot/Cart.png"
-        alt="Search"    
+        alt="Cart"    
         style="margin-right: 50px;"    
         width="250" />
   <img src="/screenshot/Checkout.png"
-        alt="Bookmark"    
+        alt="Checkout"    
         style="margin-right: 50px;"    
         width="250" />    
 </p>
