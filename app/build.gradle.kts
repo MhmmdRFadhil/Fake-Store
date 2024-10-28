@@ -76,8 +76,13 @@ dependencies {
     implementation(libs.dagger.hilt)
     kapt(libs.dagger.hilt.compiler)
 
-    // Data Store
-    implementation(libs.androidx.datastore.preferences)
+    // Room
+    implementation(libs.androidx.room.runtime)
+    annotationProcessor(libs.androidx.room.compiler)
+    // optional - Kotlin Extensions and Coroutines support for Room
+    implementation(libs.androidx.room.ktx)
+    // To use Kotlin annotation processing tool (kapt)
+    kapt(libs.androidx.room.compiler)
 
     // For instrumented tests.
     androidTestImplementation(libs.hilt.android.testing)

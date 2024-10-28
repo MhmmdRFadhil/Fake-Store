@@ -25,11 +25,12 @@ class ProductRepositoryImpl @Inject constructor(private val apiService: ApiServi
             flow.emit(Resource.Success(response))
         }
 
-    override suspend fun getProduct(): Flow<Resource<List<ProductResponse>>> = executeFlow(callApi = {
-        apiService.getProduct()
-    }) { response, flow ->
-        flow.emit(Resource.Success(response))
-    }
+    override suspend fun getProduct(): Flow<Resource<List<ProductResponse>>> =
+        executeFlow(callApi = {
+            apiService.getProduct()
+        }) { response, flow ->
+            flow.emit(Resource.Success(response))
+        }
 
     override suspend fun getProductDetail(productId: Int): Flow<Resource<ProductResponse>> =
         executeFlow(callApi = {

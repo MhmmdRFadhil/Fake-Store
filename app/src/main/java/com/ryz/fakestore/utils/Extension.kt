@@ -3,6 +3,7 @@ package com.ryz.fakestore.utils
 import android.app.Activity
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
@@ -10,7 +11,6 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.google.android.material.appbar.MaterialToolbar
@@ -22,6 +22,9 @@ import com.ryz.fakestore.data.remote.Resource
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Locale
 
 suspend inline fun <T> StateFlow<GenericUiState<T>>.collectUiState(
     fragment: Fragment,
@@ -146,7 +149,7 @@ fun ImageView.loadImageUrl(url: String?, imageType: ImageType = ImageType.DEFAUL
     when (imageType) {
         ImageType.DEFAULT -> glide.into(this)
         ImageType.CIRCLE -> glide.circleCrop().into(this)
-        ImageType.ROUNDED -> glide.transform(CenterCrop(), RoundedCorners(20)).into(this)
+        ImageType.ROUNDED -> glide.transform(RoundedCorners(20)).into(this)
     }
 }
 
@@ -155,8 +158,8 @@ fun Fragment.initToolbar(
     toolbar: MaterialToolbar,
     onNavigationUp: (() -> Unit)? = null
 ) {
-    val toolbarColor = requireContext().getColor( R.color.black)
-    val toolbarBackground = requireContext().getColor(R.color.white )
+    val toolbarColor = requireContext().getColor(R.color.black)
+    val toolbarBackground = requireContext().getColor(R.color.white)
 
     toolbar.apply {
         this.title = title
@@ -166,5 +169,22 @@ fun Fragment.initToolbar(
         setTitleTextColor(toolbarColor)
         setNavigationIconTint(toolbarColor)
         setBackgroundColor(toolbarBackground)
+    }
+}
+
+fun getCurrentDate(locale: Locale? = null, pattern: String): String {
+    return System.currentTimeMillis().toDateFormat(locale, pattern)
+}
+
+fun Long?.toDateFormat(locale: Locale? = null, pattern: String): String {
+    if (this == null) return ""
+    try {
+        val sdf = SimpleDateFormat(pattern, locale ?: Locale.getDefault())
+        val calendar = Calendar.getInstance()
+        calendar.timeInMillis = this
+        return sdf.format(calendar.time)
+    } catch (e: Exception) {
+        Log.e("DateUtils", "${e.message}")
+        return ""
     }
 }

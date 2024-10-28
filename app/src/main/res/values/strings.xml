@@ -28,4 +28,23 @@
     <string name="zip_code">Zip Code</string>
     <string name="greeting_login">Hello Again 👋🏻</string>
     <string name="greeting_message_login">Welcome back, you\'ve been missed!</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="banner_url">https://img.freepik.com/premium-vector/final-offer-banner-with-super-sale-retail-discount_419341-1123.jpg?w=1380</string>
+    <string name="order">Order</string>
+    <string name="cart">Cart</string>
+    <string name="remove">Remove</string>
+    <string name="shopping_cart">Shopping Cart</string>
+    <string name="payment_details">Payment details</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="fee">Fee</string>
+    <string name="total">Total</string>
+    <string name="format_quantity">x%s</string>
+    <string name="empty_title">Your shopping cart is empty</string>
+    <string name="empty_message">Let\'s add items to the cart to see them here.</string>
+    <string name="success_order_title">Yeay! Order Successfully Made</string>
+    <string name="success_order_message">We will confirm and ship your order immediately. Thank you for shopping with us!</string>
+    <string name="item_added_successfully">Successfully add to cart</string>
+    <string name="item_updated_successfully">Item updated successfully</string>
+    <string name="item_deleted_successfully">Item deleted successfully</string>
+    <string name="back_to_home">Back to Home</string>
 </resources>

@@ -1,6 +1,8 @@
 package com.ryz.fakestore.data.remote
 
+import com.ryz.fakestore.data.model.request.CartRequest
 import com.ryz.fakestore.data.model.request.LoginRequest
+import com.ryz.fakestore.data.model.response.CartResponse
 import com.ryz.fakestore.data.model.response.LoginResponse
 import com.ryz.fakestore.data.model.response.ProductResponse
 import com.ryz.fakestore.data.model.response.UserResponse
@@ -45,4 +47,14 @@ interface ApiService {
     suspend fun getUserById(
         @Path("user_id") userId: Int
     ): Response<UserResponse>
+
+    @GET("/carts/user/{user_id}")
+    suspend fun getCartByUserId(
+        @Path("user_id") userId: Int
+    ): Response<List<CartResponse>>
+
+    @POST("/carts")
+    suspend fun addCart(
+        @Body request: CartRequest
+    ): Response<CartResponse>
 }

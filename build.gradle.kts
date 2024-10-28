@@ -6,4 +6,5 @@ plugins {
     alias(libs.plugins.navigation.safe.args) apply false
     alias(libs.plugins.dagger.hilt) apply false
     alias(libs.plugins.plugin.parcelize) apply false
+    id("com.google.devtools.ksp") version "1.9.0-1.0.11" apply false
 }

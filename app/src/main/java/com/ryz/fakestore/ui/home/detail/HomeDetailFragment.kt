@@ -11,18 +11,23 @@ import androidx.navigation.fragment.navArgs
 import com.ryz.fakestore.R
 import com.ryz.fakestore.data.model.response.ProductResponse
 import com.ryz.fakestore.databinding.FragmentHomeDetailBinding
+import com.ryz.fakestore.ui.cart.CartViewModel
 import com.ryz.fakestore.ui.home.HomeViewModel
 import com.ryz.fakestore.utils.BaseFragment
 import com.ryz.fakestore.utils.collectUiState
 import com.ryz.fakestore.utils.initToolbar
 import com.ryz.fakestore.utils.loadImageUrl
+import com.ryz.fakestore.utils.showMessage
 import com.ryz.fakestore.utils.toCapitalizeWords
+import com.ryz.fakestore.utils.toCartProductEntity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class HomeDetailFragment : BaseFragment<FragmentHomeDetailBinding>(FragmentHomeDetailBinding::inflate) {
+class HomeDetailFragment :
+    BaseFragment<FragmentHomeDetailBinding>(FragmentHomeDetailBinding::inflate) {
     private val viewModel by viewModels<HomeViewModel>()
+    private val cartViewModel by viewModels<CartViewModel>()
     private val args by navArgs<HomeDetailFragmentArgs>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,27 +41,42 @@ class HomeDetailFragment : BaseFragment<FragmentHomeDetailBinding>(FragmentHomeD
     private fun initUI() {
         initToolbar(getString(R.string.details), binding.toolbarLayout.toolbar)
 
-        viewModel.getProductDetail(args.id)
+        args.data.id?.let { viewModel.getProductDetail(it) }
     }
 
-    private fun initListener() = with(binding) {
-        tvCheckout.setOnClickListener {
-
+    private fun initListener() {
+        binding.tvAddToCart.setOnClickListener {
+            val requestData = args.data.toCartProductEntity(localDataSource.getUserId())
+            cartViewModel.insertItem(requestData)
         }
     }
 
     private fun initCollector() = viewLifecycleOwner.lifecycleScope.launch {
         viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-            viewModel.productDetail.collectUiState(
-                fragment = this@HomeDetailFragment,
-                progressBar = binding.progressBar,
-                onLoading = { isLoading ->
-                    binding.clContent.isVisible = !isLoading
-                },
-                onSuccess = { data ->
-                    populateUI(data)
-                }
-            )
+            launch {
+                viewModel.productDetail.collectUiState(
+                    fragment = this@HomeDetailFragment,
+                    progressBar = binding.progressBar,
+                    onLoading = { isLoading ->
+                        binding.clContent.isVisible = !isLoading
+                    },
+                    onSuccess = { data ->
+                        populateUI(data)
+                    }
+                )
+            }
+
+            launch {
+                cartViewModel.insertItem.collectUiState(
+                    fragment = this@HomeDetailFragment,
+                    progressBar = binding.progressBar,
+                    onLoading = { isLoading ->
+                        binding.tvAddToCart.isVisible = !isLoading
+                    },
+                    onSuccess = {
+                        showMessage(getString(R.string.item_added_successfully))
+                    })
+            }
         }
     }
 

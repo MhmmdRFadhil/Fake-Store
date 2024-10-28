@@ -24,6 +24,9 @@
         <action
             android:id="@+id/action_homeFragment_to_bottomSheetProfileFragment"
             app:destination="@id/bottomSheetProfileFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
     </fragment>
     <fragment
         android:id="@+id/homeDetailFragment"
@@ -31,16 +34,46 @@
         android:label="fragment_home_detail"
         tools:layout="@layout/fragment_home_detail">
         <argument
-            android:name="id"
-            app:argType="integer" />
+            android:name="data"
+            app:argType="com.ryz.fakestore.data.model.response.ProductResponse" />
     </fragment>
     <dialog
         android:id="@+id/bottomSheetProfileFragment"
         android:name="com.ryz.fakestore.ui.home.profile.BottomSheetProfileFragment"
         android:label="BottomSheetProfileFragment"
-        tools:layout="@layout/fragment_bottom_sheet_profile" >
+        tools:layout="@layout/fragment_bottom_sheet_profile">
         <argument
             android:name="userId"
             app:argType="integer" />
     </dialog>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.ryz.fakestore.ui.cart.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart">
+        <action
+            android:id="@+id/action_cartFragment_to_homeDetailFragment"
+            app:destination="@id/homeDetailFragment" />
+        <action
+            android:id="@+id/action_cartFragment_to_checkOutFragment"
+            app:destination="@id/checkOutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/checkOutFragment"
+        android:name="com.ryz.fakestore.ui.cart.CheckOutFragment"
+        android:label="fragment_check_out"
+        tools:layout="@layout/fragment_check_out" >
+        <action
+            android:id="@+id/action_checkOutFragment_to_successOrderFragment"
+            app:destination="@id/successOrderFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/successOrderFragment"
+        android:name="com.ryz.fakestore.ui.cart.SuccessOrderFragment"
+        android:label="fragment_success_order"
+        tools:layout="@layout/fragment_success_order" >
+        <action
+            android:id="@+id/action_successOrderFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
 </navigation>

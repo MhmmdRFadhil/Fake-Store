@@ -26,6 +26,7 @@ class HomeViewModel @Inject constructor(private val repository: ProductRepositor
         MutableStateFlow<GenericUiState<ProductResponse>>(GenericUiState.Loading(false))
     val productDetail = _productDetail.asStateFlow()
 
+
     fun getAllCategory() = viewModelScope.launch {
         repository.getAllCategory().collect { resource ->
             _category.updateFromResource(resource)

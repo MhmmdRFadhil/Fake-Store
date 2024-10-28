@@ -8,10 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ryz.fakestore.R
 import com.ryz.fakestore.data.model.response.ProductResponse
 import com.ryz.fakestore.databinding.ItemProductBinding
-import com.ryz.fakestore.utils.ImageType
 import com.ryz.fakestore.utils.loadImageUrl
 
-class ProductAdapter(private val onClick: (Int?) -> Unit) :
+class ProductAdapter(private val onClick: (ProductResponse?) -> Unit) :
     ListAdapter<ProductResponse, ProductAdapter.ProductViewHolder>(DIFF_CALLBACK) {
     inner class ProductViewHolder(private val binding: ItemProductBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -23,7 +22,7 @@ class ProductAdapter(private val onClick: (Int?) -> Unit) :
             tvPrice.text = root.context.getString(R.string.format_price, data.price.toString())
 
             root.setOnClickListener {
-                onClick.invoke(data.id)
+                onClick.invoke(data)
             }
         }
     }

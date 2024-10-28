@@ -29,4 +29,23 @@
     <string name="zip_code">Kode pos</string>
     <string name="greeting_login">Halo lagi 👋🏻</string>
     <string name="greeting_message_login">Selamat datang kembali, Anda telah dirindukan!</string>
+    <string name="add_to_cart">Add to Cart</string>
+    <string name="banner_url">https://img.freepik.com/premium-vector/final-offer-banner-with-super-sale-retail-discount_419341-1123.jpg?w=1380</string>
+    <string name="order">Pesan</string>
+    <string name="cart">Keranjang</string>
+    <string name="remove">Hapus</string>
+    <string name="shopping_cart">Keranjang Belanja</string>
+    <string name="payment_details">Detail pembayaran</string>
+    <string name="subtotal">Subtotal</string>
+    <string name="fee">Biaya Admin</string>
+    <string name="total">Total</string>
+    <string name="format_quantity">x%s</string>
+    <string name="empty_title">Keranjang belanjamu kosong</string>
+    <string name="empty_message">Ayo tambahkan barang ke keranjang untuk melihatnya di sini.</string>
+    <string name="success_order_title">Yeay! Pesanan Berhasil Dibuat</string>
+    <string name="success_order_message">Kami akan segera mengonfirmasi dan mengirimkan pesananmu. Terima kasih sudah berbelanja dengan kami!</string>
+    <string name="item_added_successfully">Berhasil menambahkan ke keranjang</string>
+    <string name="item_updated_successfully">Item berhasil diperbarui</string>
+    <string name="item_deleted_successfully">Item berhasil dihapus</string>
+    <string name="back_to_home">Kembali ke Beranda</string>
 </resources>

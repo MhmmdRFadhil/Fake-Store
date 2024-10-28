@@ -1,17 +1,14 @@
 package com.ryz.fakestore.ui.home.profile
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.navArgs
-import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.ryz.fakestore.data.model.response.UserResponse
 import com.ryz.fakestore.databinding.FragmentBottomSheetProfileBinding
@@ -26,7 +23,7 @@ class BottomSheetProfileFragment : BottomSheetDialogFragment() {
     private val binding get() = _binding!!
 
     private val viewModel by viewModels<LoginViewModel>()
-    private val args by navArgs<BottomSheetProfileFragmentArgs>()
+    private val userId by lazy { arguments?.getInt(USER_ID) }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -44,33 +41,18 @@ class BottomSheetProfileFragment : BottomSheetDialogFragment() {
         initCollector()
     }
 
-    override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        dialog?.setOnShowListener {
-            val dialog = it as BottomSheetDialog
-            val bottomSheet =
-                dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-            bottomSheet?.let { sheet ->
-                BottomSheetBehavior.from(sheet).apply {
-                    state = BottomSheetBehavior.STATE_EXPANDED
-                    peekHeight = bottomSheet.height
-                    isFitToContents = false
-                    halfExpandedRatio = 0.7f
-                }
-            }
-        }
-
-        return super.onCreateDialog(savedInstanceState)
-    }
-
     private fun initUI() {
-        viewModel.getUserById(args.userId)
+        userId?.let { viewModel.getUserById(it) }
     }
 
     private fun initCollector() = viewLifecycleOwner.lifecycleScope.launch {
         viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
             viewModel.userData.collectUiState(
                 fragment = this@BottomSheetProfileFragment,
-                progressBar = binding.progressBar
+                progressBar = binding.progressBar,
+                onLoading = { isLoading ->
+                    binding.content.isVisible = !isLoading
+                }
             ) { data ->
                 populateData(data)
             }
@@ -94,5 +76,15 @@ class BottomSheetProfileFragment : BottomSheetDialogFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    companion object {
+        const val USER_ID = "userId"
+
+        fun newInstance(userId: Int) = BottomSheetProfileFragment().apply {
+            arguments = Bundle().apply {
+                putInt(USER_ID, userId)
+            }
+        }
     }
 }
